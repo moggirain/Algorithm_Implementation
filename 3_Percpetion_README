@@ -1,0 +1,65 @@
+Name: Xiaoyu Wan
+Course: CSC446
+Contact: xwan3@u.rochester.edu
+
+******Files************
+Wan_perceptron.py
+readme.txt
+
+*********instructions***************
+
+******Experiment********
+
+In this assignment, a training model is first established by using the training set and returned the weight to fit the model, and the dev data is used to evaluate the model by tuning the hyper parameters. In this case, the iteration and the learning rate are two hyper parameters that are tuned. When experimenting the performance, The iterations(i) was selected from 10 to 100, with the step as 10. And tested the learning rate when it is 1.0, 0.5, and 0.1 accordingly. 
+
+***********Result*********************
+
+For learning rate = 1.0, the test accuracy is shown below:
+
+i=10, 0.812433518, 
+i=20, 0.796714336,
+i=30, 0.799314502, 
+i=40, 0.721073159, 
+i=50, 0.813615412, 
+i=60, 0.777685852, 
+i=70, 0.801441909, 
+i=80, 0.795177874, 
+i=90, 0.805460347,
+i=100,0.778985935,
+
+for learning rate = 0.5, the test accuracy is shown below:
+
+learning rate = 0.5 
+
+i=10, 0.8124335184966316
+i=20, 0.7967143363668597
+i=30, 0.7993145018319348
+i=40, 0.7210731592010401
+i=50, 0.8136154118898475
+i=60, 0.7776858527360833
+i=70, 0.8014419099397234
+i=80, 0.795177874955679
+i=90, 0.8054603474766576
+i=100, 0.7789859354686207
+
+learning rate = 0.1
+
+i=10, 0.8173974707481385
+i=20, 0.8182247961233897
+i=30, 0.8184611748020328
+i=40, 0.8010873419217587
+i=50, 0.7574754757120907
+i=60, 0.7419926722609621
+i=70, 0.8023874246542961
+i=80, 0.8166883347122089
+i=90, 0.7936414135444982
+i=100,0.7594846944805579
+
+
+**********Interpretation**************
+
+When test the results by setting lr=1, iterations =1 and lr =2, iterations =10,the result matched the one output provided in the instruction. 
+
+The experiment result indicated that when the learning rate decreases, the test accuracy performed slightly better. For lr = 1.0, the best accuracy is i=50, 0.813615412; when lr = 0.5, the best accuracy is 0.5, the best accuracy is i=50, 0.8136154118898475. For lr= 0.1, the best accuracy is i=30, 0.8184611748020328. In general, the best accuracy is when lr= 0.1, i=30, 0.8184611748020328. The accuracy of the dev set performs slightly better than the test set. 
+
+The accuracy also fluctuates with the iteration times, and it is not a smooth curve. This is probably because of the input data is not linearly separable, so the performance changes. 

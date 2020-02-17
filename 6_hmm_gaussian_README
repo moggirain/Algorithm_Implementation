@@ -1,0 +1,63 @@
+Name: Xiaoyu Wan
+Course: CSC446
+Contact: xwan3@u.rochester.edu
+
+******Files************
+Wan_hmm_gaussian.py
+readme.txt
+
+*********instructions************************
+
+
+********code explanation*********************
+I implemented the Hidden Markov Model by using the EM algorithm. 
+
+Initial Model: In this function, three parameters must, sigmas, transitions and initials were initiated. Without using the given cluster data, initials was initiated by 1/cluster_num and the sum probability = 1. mus was initiated randomly drawing the sample from normal distributions, as 2 k*1 matrix. 
+The covariance matrix sigmas was initiated with two cases: 1) full covariance matrix-using k=cluster number identity matrix. 2) tied covariance matrix-sharing 1 identity matrix. 
+Transition matrix was initiated using k=cluster number identity matrix as well. 
+
+
+Forward: The forward algorithm calculates and normalize alpha; also log-likelihood was calculated in this part. 
+
+Backward: The backward algorithm calculates and normalize beta. 
+
+
+train model: Both E step-Expectation and M-step Maximization of the EM algorithm were implemented for two cases. 
+
+In either of the above case, the emission matrix was calculated separately before the iteration, so as to reduce the computing complexity. 
+
+average likelihood: Likewise, this function is to compute the average likelihood considering the two cases above. 
+
+Extract_weights: Extract the weights from the model after returning. 
+
+****************Experiment*******************
+
+In this assignment, EM algorithm is implemented for the HMM model. The dev data is used to tune and select the best log likelihood and evaluate the model. In this case, the iteration, and number of clusters are two hyper parameters that are tuned. When experimenting the performance, The iterations(i) was tested as 300. The number of clusters are tested from 2 to 10 accordingly. 
+
+***********Result*********************
+
+From the range of cluster number from 2 to 10 and iteration number in 50 and 200, the experiment for the best train loss likelihood are:
+
+iteration 50: 
+
+best train ll -3.6838410584475816
+best dev:  (9, 9)
+best dev ll -3.7162345256349725
+Train LL: -3.6838410584475816
+Dev LL: -3.7798588447319657
+
+Iteration 200: 
+
+best train ll -3.6814483413640122
+best dev:  (9, 9)
+best dev ll -3.7162345256349725
+Train LL: -3.6814483667676052
+Dev LL: -3.7912334694086605
+
+**********Interpretation**************
+
+Does the HMM model the data better than the original non-sequence model? What is the best number of states?
+
+Compared the log likelihood of the sequence model and the original model, I found the dev log likelihood of HMM reaches -3.7912334694086605 during iteration 9, and the best state is 9 (cluster_num), whereas the original model likelihood is -4.3307569786496, when the cluster number is 10. Given the maximum log likelihood, the sequence model performs better. 
+
+Using the dev data as the reference to tune the hyper parameters the iterations and the number of clusters. For the iteration of 50, with the number of clusters increase largely from 2 to 10, it does not show the sign of convergence. When the iteration is in the range of 200, it reaches the convergence rate faster around iteration = 23. When the number of clusters are below 7, both train and development likelihood increases in a similar trend. They both started to converge around iteration 23. When the number of clusters are beyond 6, the likelihood of training set are converged while the development likelihood gradually decreases, which indicated the overfitting problem. As both training likelihood and development likelihood converges during the iteration of 200, I did not tune the iteration to a larger value. In sum, the result indicated that both the number of clusters and iterations affect the loss likelihood of models. 

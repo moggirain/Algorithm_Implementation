@@ -1,0 +1,86 @@
+Name: Xiaoyu Wan
+Course: CSC446
+Contact: xwan3@u.rochester.edu
+
+******Files************
+Wan_backprop.py
+readme.txt
+
+********code explanation*********************
+Initial Model: I adjust the random initialization of the weight, given the the gradient is easily to reach the saturation when the lr = 0.01, which is quite small. So I experimented with subtracting the initial weight by 0.5 and the performance was adjusted. 
+
+Sigmoid: I wrote sigmoid function for both the activation and derivation during the back-propagation process, which enables the easier calling in the following process.
+
+Forwardpop: To achieve the feedforward process when training the model. 
+
+Backprop: To achieve the back propagation, which is to adjust each weight in the network in proportion to how much it contributes to overall error. 
+
+train_model: I divide the process into two situations: 1) modeling training alone; 2) Using the dev set to validate the model. 
+
+test_accuracy: To calculate the accuracy rate when using the test set. According to the sigmoid function, the prediction is considered as 1 when y_hat is greater than 0.5, and 0 when verse versa.  
+
+Extract_weights: Extract the weights from the model after returning. 
+
+****************Experiment*******************
+
+In this assignment, a training model is first established by using the training set and returned the weight to fit the model, and the dev data is used to evaluate the model by tuning the hyper parameters. In this case, the iteration, learning rate and hidden dimension are three hyper parameters that are tuned. When experimenting the performance, The iterations(i) was selected from 20, 50 and 100. The learning rate is tested when it is 0.01, 0.1, and 0.5 accordingly. The hidden dimension is set as 5 and 10. I drew the plot to compare the dev accuracy with the train accuracy trend.  
+
+***********Result*********************
+
+For lr = 0.01, the best dev_accuracy=0.85125 is achieved when args.iterations = 20, hidden dim=5, which is shown below: 
+
+Iterations = 20
+iterations 0, accuracy 0.7669, lr 0.01, hidden_dim 5
+iterations 2, accuracy 0.8304, lr 0.01, hidden_dim 5
+iterations 4, accuracy 0.8416, lr 0.01, hidden_dim 5
+iterations 6, accuracy 0.8465, lr 0.01, hidden_dim 5
+iterations 8, accuracy 0.8490, lr 0.01, hidden_dim 5
+iterations 10, accuracy 0.8504, lr 0.01, hidden_dim 5
+iterations 12, accuracy 0.8501, lr 0.01, hidden_dim 5
+iterations 14, accuracy 0.8501, lr 0.01, hidden_dim 5
+iterations 16, accuracy 0.8499, lr 0.01, hidden_dim 5
+iterations 18, accuracy 0.8514, lr 0.01, hidden_dim 5
+Best dev_accuracy:  0.85125
+
+Even after adjusting the args.iterations to 50 and 100, the train set and dev set both grow similarly when the iterations increases, and quickly become a smooth flat line around iteration = 10.
+
+For lr = 0.1, the best dev_accuracy=0.850125 is achieved when args.iterations = 50, hidden dim=5, which is shown below:
+
+iterations 0, accuracy 0.8486, lr 0.10, hidden_dim 5
+iterations 5, accuracy 0.8494, lr 0.10, hidden_dim 5
+iterations 10, accuracy 0.8501, lr 0.10, hidden_dim 5
+iterations 15, accuracy 0.8505, lr 0.10, hidden_dim 5
+iterations 20, accuracy 0.8498, lr 0.10, hidden_dim 5
+iterations 25, accuracy 0.8496, lr 0.10, hidden_dim 5
+iterations 30, accuracy 0.8472, lr 0.10, hidden_dim 5
+iterations 35, accuracy 0.8474, lr 0.10, hidden_dim 5
+iterations 40, accuracy 0.8471, lr 0.10, hidden_dim 5
+iterations 45, accuracy 0.8472, lr 0.10, hidden_dim 5
+dev_accuracy:0.850125
+
+The training data grows gradually with the iteration increases; however, the dev set fluctuates when reaches to the peak point around iterations = 15, and slightly decreases. This trend is even more obvious when setting the iterations to 100. The overfitting problem occurs in a earlier stage. 
+
+
+For lr = 0.5, the best dev_accuracy=0.49375 is achieved when args.iterations = 100, hidden dim=5, which is shown below:
+
+iterations 0, accuracy 0.8460, lr 0.50, hidden_dim 5
+iterations 10, accuracy 0.8479, lr 0.50, hidden_dim 5
+iterations 20, accuracy 0.8470, lr 0.50, hidden_dim 5
+iterations 30, accuracy 0.8429, lr 0.50, hidden_dim 5
+iterations 40, accuracy 0.8403, lr 0.50, hidden_dim 5
+iterations 50, accuracy 0.8371, lr 0.50, hidden_dim 5
+iterations 60, accuracy 0.8353, lr 0.50, hidden_dim 5
+iterations 70, accuracy 0.8341, lr 0.50, hidden_dim 5
+iterations 80, accuracy 0.8357, lr 0.50, hidden_dim 5
+iterations 90, accuracy 0.8354, lr 0.50, hidden_dim 5
+dev_accuracy:0.849375
+
+In this case, the trend is similar to the above case. The training data grows gradually with the iteration increases while the dev set fluctuates when reaches to the peak point around iterations = 10. When args.iterations = 20 and 50, the trend is similar, but with the earlier decreasing point. 
+
+The global best dev_accuracy=0.85125 is achieved when lr = 0.01 and args.iterations = 20.  
+
+**********Interpretation**************
+
+When testing the results by setting lr=0.01, iterations =1, the result matched the example output provided in the instruction. 
+
+The experiment result indicated that when the learning rate decreases, the test accuracy performed slightly better as the experiment results shows. And the increase of iteration can increase accuracy because the initialized weights have not reached the optimal point when the network just begins to learn. Increase the hidden dimension seems not contribute much to the accuracy change when compared the hidden_dimension =5 and 10, which probably because the model is initiated when the dimension changes. The dev_accuracy fluctuated because the network learned the training data with more complexity, and with the noise from the training data. This is why, when the learning rate becomes bigger, such as 0.5, the model reaches the early dropping point, and the overfitting problem turned out to become a problem. 
